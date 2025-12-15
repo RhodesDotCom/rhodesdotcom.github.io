@@ -1,0 +1,48 @@
+:root {
+  --green-dark: #1e4631;
+  --green-light: #b2c2a2;
+  --light: 	#f8f5f0;
+  --light-secondary: #fcfaf6;
+  --dark: #262626;
+  /* --grey: #a4a49f; */
+  --grey: #8f8f8f;
+}
+
+@font-face {
+    font-family: ff-providence;
+    src: url('font/Providence_Sans_Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: ff-providence, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.navbar {
+    background-color: var(--green-light);
+}
+
+.navbar > a {
+    color: var(--dark);
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+}
+
+.nav-item {
+    font-size: 1.4rem;
+}
+
+input {
+    background-color: var(--light-secondary);
+}
+
+/* .accordion-button {
+    background-color: var(--light);
+}
+
+.accordion-body {
+    background-color: var(--light); */
+/* } */

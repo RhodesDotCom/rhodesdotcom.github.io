@@ -1,0 +1,55 @@
+.timeline-container {
+  position: relative;
+  width: 100%;
+}
+
+.timeline {
+  position: relative;
+  width: 0.75vw;
+  margin: 0 auto;
+  height: auto;
+
+  background-image: url('/images/line.png');
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: 0.75vw 100%;
+
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12vh;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  /* height: 5vh; */
+}
+
+.timeline-item div {
+  width: 47vw;
+  font-size: 2rem;
+  /* line-height: 5vh; */
+}
+
+.timeline-item img {
+  align-self: baseline;
+  max-width: 120px;
+  max-height: 120px;
+  padding-left: 2vw;
+}
+
+.time {
+  text-align: right;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
