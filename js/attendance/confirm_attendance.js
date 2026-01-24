@@ -19,19 +19,57 @@ $(async () => {
     }
 
     let grouped_ids = await getGroup(id);
-
-    if (grouped_ids.length) {
+    if (grouped_ids.length > 1) {
         for (let {attendee_id} of grouped_ids) {
-            let name_card = await getNameCard(attendee_id)
-            $('#rsvp').prepend(name_card)
+            if ( attendee_id != id ) {
+                let name_card = await getNameCard(attendee_id)
+                $('#rsvp').prepend(name_card)
+            }
         }
-    } else {
-        let name_card = await getNameCard(id)
-        $('#rsvp').prepend(name_card)
+    }
+
+    let name_card = await getNameCard(id)
+    $('#rsvp').prepend(name_card)
+
+    let message = await getAttendee(id);
+    if (message[0].message && message[0].message.length) {
+        $('#message').val( message[0].message );
     }
 
     $("#rsvp").on("submit", async function(e) {
         e.preventDefault();
+
+        let isValid = true;
+
+        // Clear previous state
+        $(this).find('.is-invalid').removeClass('is-invalid');
+
+        // Text, textarea, select
+        $(this).find('[required]').each(function () {
+            const $field = $(this);
+
+            // Radio handled separately
+            if ($field.is(':radio')) return;
+
+            if (!$field.val()) {
+                $field.addClass('is-invalid');
+                isValid = false;
+            }
+        });
+
+        // Radio groups
+        $(this).find('input[type="radio"][required]').each(function () {
+            const name = this.name;
+
+            if (!$(`input[name="${name}"]:checked`).length) {
+                $(`input[name="${name}"]`).addClass('is-invalid');
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            return;
+        }
         
         // const formData = $(this).serialize();
         const formData = new FormData(this);
@@ -43,8 +81,9 @@ $(async () => {
             attendee_responses[attendee_id][event] = response;
         }
 
+        let message = $('#message').val();
+
         for (let [attendee_id, responses] of Object.entries(attendee_responses)) {
-            console.log(responses)
             const update_values = {
                 "reception_confirmed": responses.reception ?? 0,
                 "evening_confirmed": responses.evening ?? 0,
@@ -53,7 +92,8 @@ $(async () => {
                 "nut": responses.nut ?? 0,
                 "dairy": responses.dairy ?? 0,
                 "gluten": responses.gluten ?? 0,
-                "email": responses.contact ?? ""
+                "email": responses.contact ?? "",
+                "message": message
             };
 
             const { data, error } = await supabase
@@ -66,7 +106,8 @@ $(async () => {
 
         }
 
-        // window.location.href = "/attendance/confirmed/";
+
+        window.location.href = "/attendance/confirmed/";
             
     });        
     
@@ -93,7 +134,7 @@ async function getAttendee(id, name = "") {
     if (error) console.error(id, error);
   
     return attendee;
-  }
+}
 
 async function getGroup(id) {
 
@@ -137,10 +178,10 @@ async function getNameCard(id) {
             $(this).attr('id', $(this).attr('id') + '_' + attendee[0].id);
         });
         if (attendee[0].reception_confirmed === true) {
-            $reception_template.find('#reception-yes').attr('checked', true);
+            $reception_template.find('#reception-yes' + '_' + attendee[0].id).attr('checked', true);
         }
         if (attendee[0].reception_confirmed === false) {
-            $reception_template.find('#reception-no').attr('checked', true);
+            $reception_template.find('#reception-no' + '_' + attendee[0].id).attr('checked', true);
         }
 
         $template.find('.container').append($reception_template);
@@ -158,10 +199,10 @@ async function getNameCard(id) {
             $(this).attr('id', $(this).attr('id') + '_' + attendee[0].id);
         });
         if (attendee[0].evening_confirmed === true) {
-            $evening_template.find('#evening-yes').attr('checked', true);
+            $evening_template.find('#evening-yes' + '_' + attendee[0].id).attr('checked', true);
         }
         if (attendee[0].evening_confirmed === false) {
-            $evening_template.find('#evening-no').attr('checked', true);
+            $evening_template.find('#evening-no' + '_' + attendee[0].id).attr('checked', true);
         }
 
         $template.find('.container').append($evening_template);
@@ -198,15 +239,18 @@ async function getNameCard(id) {
 
         $contact_template.find('.form-control').each( function() {
             let name = $(this).attr('id');
-            $(this).attr('name', 'contact_' + attendee[0].id);
+            $(this).attr('name', 'email_' + attendee[0].id);
+            $(this).attr('id', $(this).attr('id') + '_' + attendee[0].id);
         });
         if (attendee[0].email !== null) {
-            $contact_template.find('#contact').val(attendee[0].email);
+            $contact_template.find('#email' + '_' + attendee[0].id).val(attendee[0].email);
         }
 
         $template.find('.container').append($contact_template);
         
     }
+
+
 
     // todo : add id to for
     // todo : fix email autofill

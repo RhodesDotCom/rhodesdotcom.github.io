@@ -1,0 +1,21 @@
+/* TOP */
+.f1 { top: -66px; left: -58px; }
+.f2 { top: -65px; left: -48px; }
+.f12 { top: -70px; left: -48px; transform: scale(0.15); }
+.f3 { top: -65px; left: -15px; }
+.f16 { top: -68px; left: -26px; }
+.f4 { top: -68px; left: -13px; }
+/* LHS */
+.f6 { top: -58px; left: -74px; }
+.f9 { top: -45px; left: -80px; }
+.f11 { top: -28px; left: -58px; transform: scale(0.16); }
+/* BOTTOM */
+.f10 { top: -33px; left: -49px; }
+.f5 { top: -10px; left: -38px; }
+.f13 { top: -22px; left: -23px; transform: scale(0.12)}
+.f14 { top: -20px; left: -12px; }
+.f8 { top: -26px; left: -12px; transform: scale(0.15); }
+
+/* RHS */
+.f7 { top: -62px; left: 8px; }
+.f17 { top: -25px; left: 8px; }

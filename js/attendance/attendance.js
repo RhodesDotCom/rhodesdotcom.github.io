@@ -1,5 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "../db/config.js";
+import { animateButton  } from '../button/button.js';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let attendeeNames = [];
@@ -86,20 +87,44 @@ function filterAttendees(query) {
       easing: 'easeInOutQuad'
     });
   });
+
+  animateButton();
+
 }
 
 function getAttendeeCard(id, name) {
-        // <img class="card-img-top" src="/images/wine_glasses.png" width="200px" height="200px" alt="Card image cap">
   return `
     <div id="${id}" class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">${name}</h5>
-        <a class="button-confirm btn btn-light">Confirm Attendance</a>
+        <button type="button" class="button-confirm btn btn-green btn-flower">
+          Confirm Attendance
+          <img class="flower f1" src="/images/flower_1.png">
+          <img class="flower f2" src="/images/flower_2.png">
+          <img class="flower f3" src="/images/flower_3.png">
+          <img class="flower f4" src="/images/flower_4.png">
+          <img class="flower f5" src="/images/flower_5.png">
+          <img class="flower f6" src="/images/flower_6.png">
+          <img class="flower f7" src="/images/flower_7.png">
+          <img class="flower f8" src="/images/flower_8.png">
+          <img class="flower f9" src="/images/flower_1.png">
+          <img class="flower f10" src="/images/flower_2.png">
+          <img class="flower f11" src="/images/flower_3.png">
+          <img class="flower f12" src="/images/flower_4.png">
+          <img class="flower f13" src="/images/flower_5.png">
+          <img class="flower f14" src="/images/flower_6.png">
+          <img class="flower f15" src="/images/flower_7.png">
+          <img class="flower f16" src="/images/flower_8.png">
+          <img class="flower f17" src="/images/flower_1.png">
+          <img class="flower f18" src="/images/flower_2.png">
+          <img class="flower f19" src="/images/flower_3.png">
+          <img class="flower f20" src="/images/flower_4.png">
+          <img class="flower f21" src="/images/flower_5.png">
+          <img class="flower f22" src="/images/flower_6.png">
+        </a>
       </div>
     </div>
   `;
-
-  // <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 }
 
 $('#attendeeInput').on('input', function () {

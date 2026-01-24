@@ -13,6 +13,7 @@
         <script src="/js/bootstrap.bundle.js"></script>
         <script src="/js/datatables.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 
         <style>body { display: none; }</style>
         <script src="/js/auth/check.js"></script>
@@ -24,6 +25,7 @@
         <link rel="stylesheet" href="/css/jquery-ui.theme.css">
 
         <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/attendance.css">
 
     </head>
     <body>
@@ -32,22 +34,19 @@
 
         <div class="container text-center">
             <div class="row mt-5">
-                <div class="col-md">
-                    <div class="container">
-                        <div class="row mt-5">
-                            <div class="col-md-6 offset-3">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="attendeeInput" name="person" autocomplete="off" placeholder="Search name..." list="attendees">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="attendeeList" class="mt-5 d-flex flex-column align-items-center gap-3"></div>
-                    </div>
+                <div class="col-12 col-md-6 offset-md-3">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="attendeeInput" name="person" autocomplete="off" placeholder="Search name..." list="attendees">
+                </div>
                 </div>
             </div>
+
+            <div id="attendeeList" class="mt-5 d-flex flex-column align-items-center gap-3"></div>
         </div>
 
+
         <script type="module" src="/js/navbar/navbar.js"></script>
+        <script type="module" src="/js/button/button.js"></script>
         <script type="module" src="/js/attendance/attendance.js"></script>
         
     </body>

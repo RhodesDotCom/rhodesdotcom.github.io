@@ -10,7 +10,9 @@
         
         <script src="/js/jquery-3.7.1.min.js"></script>
         <script src="/js/jquery-ui.js"></script>
-        <script src="/js/bootstrap.bundle.js"></script>   
+        <script src="/js/bootstrap.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
                 
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/datatables.css">
@@ -19,6 +21,7 @@
         <link rel="stylesheet" href="/css/jquery-ui.theme.css">
 
         <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/login.css">
     </head>
     <body>
 
@@ -33,19 +36,43 @@
             </div>
             
             <div class="row mt-5">
-                <form id="login-form">
-                    <div class="col-sm-4 offset-4 mb-3">
-                        <input type="password" placeholder="password" class="form-control" id="password" name="password">
+                <form id="login-form" class="w-100">
+                    <div class="row mb-4 justify-content-center">
+                        <div class="col-12 col-sm-4">
+                            <input type="password" placeholder="password" class="form-control" id="password" name="password">
+                        </div>
                     </div>
-                    <div class="col d-flex justify-content-center">
-                        <button type="submit" class="btn btn-light">Login</button>
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-green btn-flower">
+                                Login
+                                <img class="flower f1" src="/images/flower_1.png">
+                                <img class="flower f2" src="/images/flower_2.png">
+                                <img class="flower f3" src="/images/flower_3.png">
+                                <img class="flower f4" src="/images/flower_4.png">
+                                <img class="flower f5" src="/images/flower_5.png">
+                                <img class="flower f6" src="/images/flower_6.png">
+                                <img class="flower f7" src="/images/flower_7.png">
+                                <img class="flower f8" src="/images/flower_8.png">
+                                <img class="flower f9" src="/images/flower_4.png">
+                                <img class="flower f10" src="/images/flower_7.png">
+                                <img class="flower f11" src="/images/flower_3.png">
+                                <img class="flower f12" src="/images/flower_4.png">
+                                <img class="flower f13" src="/images/flower_1.png">
+                                <img class="flower f14" src="/images/flower_2.png">
+                                <img class="flower f16" src="/images/flower_8.png">
+                                <img class="flower f17" src="/images/flower_5.png">
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
+
         </div>
 
         <div id="footer"></div>
 
+        <script type="module" src="/js/button/button.js"></script>
         <script type="module" src="/js/auth/auth.js"></script>
 
     </body>
