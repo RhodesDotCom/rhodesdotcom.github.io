@@ -159,14 +159,11 @@ async function getNameCard(id) {
 
     const attendee = await getAttendee(id);
 
-    // let template = await $.get('/attendance/confirm_attendance/name_card.html');
     let $template = $(name_card);
 
     $template.find('.card-title').html( attendee[0].forename + " " + attendee[0].surname )
 
     if ( attendee[0].reception_invite ) {
-        // let reception_template = await $.get('/attendance/confirm_attendance/reception.html');
-        // let reception_template = reception;
         let $reception_template = $(reception);
 
         $reception_template.find('.form-check-input').each( function() {
@@ -187,8 +184,6 @@ async function getNameCard(id) {
     }
 
     if ( attendee[0].evening_invite ) {
-        // let evening_template = await $.get('/attendance/confirm_attendance/evening.html');
-        // let evening_template = evening;
         let $evening_template = $(evening);
         
         $evening_template.find('.form-check-input').each( function() {
@@ -209,8 +204,7 @@ async function getNameCard(id) {
     }
 
     if ( attendee[0].reception_invite || attendee[0].evening_invite ) {
-        // let dietary_template = await $.get(/attendance/confirm_attendance/dietary.html');
-        // let dietary_template = dietary;
+
         let $dietary_template = $(dietary);
 
         $dietary_template.find('.form-check-input').each( function() {
@@ -235,7 +229,6 @@ async function getNameCard(id) {
 
         $template.find('.container').append($dietary_template);
 
-        // let contact_template = await $.get('/attendance/confirm_attendance/contact.html');
         let $contact_template = $(contact);
 
         $contact_template.find('.form-control').each( function() {
