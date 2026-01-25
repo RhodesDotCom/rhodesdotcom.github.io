@@ -1,8 +1,6 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "../db/config.js";
+import { supabase } from "../db/config.js";
 import { animateButton  } from '../button/button.js';
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let attendeeNames = [];
 
 async function fetchAttendees() {
@@ -141,7 +139,5 @@ $("#attendeeList").on('click', '.button-confirm', function() {
 });
 
 $(document).ready(() => {
-  $('#nav-placeholder').load('/navigation/navbar.html')
   fetchAttendees();
-
 });

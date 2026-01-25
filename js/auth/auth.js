@@ -1,7 +1,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "../db/config.js";
+import { supabase, EMAIL } from "../db/config.js";
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+supabase.auth.signOut();
 
 $('#login-form').on('submit', async function (e) {
   e.preventDefault();
@@ -17,14 +17,14 @@ $('#login-form').on('submit', async function (e) {
 });
 
 async function login(password) {
-  const { data, error } = await supabase.functions.invoke('login', {
-    body: { pwd: password }
+  const { error } = await supabase.auth.signInWithPassword({
+    email: EMAIL,
+    password
   });
 
-  if (error || !data?.token) {
+  if (error) {
     return false;
   }
 
-  sessionStorage.setItem('auth', data.token);
   return true;
 }

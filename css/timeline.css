@@ -7,10 +7,10 @@
   -ms-overflow-style: none;  /* IE/Edge */
   scrollbar-width: none;     /* Firefox */
 
-  background-image: url('/images/line.png');
+  /* background-image: url('/images/line.png');
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 15px 100%;
+  background-size: 15px 100%; */
 
   padding-top: 20vh;
   padding-bottom: 20vh;
@@ -29,7 +29,8 @@
   z-index: 0;
 
   width: 15px;
-  height: 2850px;
+  /* height: 2850px; */
+  height: 0px;
 
   background-image: url('/images/line.png');
   background-repeat: no-repeat;
@@ -46,7 +47,7 @@
   display: flex;
   justify-content: center;
   gap: 5vh;
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
 
   padding: 50px;

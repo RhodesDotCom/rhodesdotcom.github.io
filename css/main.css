@@ -72,5 +72,26 @@ input {
   pointer-events: none;
 }
 
+#bee {
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 9999;
+}
+
+#beeButton {
+    background-color: transparent;
+    border: none;
+}
+
+@media only screen and (max-width: 578px) {
+  #beeButton {
+    display: none;
+    }
+}
+
+
+
 
 

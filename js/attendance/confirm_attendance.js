@@ -1,14 +1,12 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "../db/config.js";
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+import { supabase } from "../db/config.js";
+import { contact, dietary, evening, name_card, reception } from "./template.js";
 
 $(async () => { 
     const id = sessionStorage.getItem("attendeeId");
     const name = sessionStorage.getItem("attendeeName");
 
     if (!id || !name) {
-        // error handling
+        location.replace("/attendance")
     }
 
     let attendee = await getAttendee(id, name);
@@ -161,14 +159,15 @@ async function getNameCard(id) {
 
     const attendee = await getAttendee(id);
 
-    let template = await $.get('/attendance/confirm_attendance/name_card.html');
-    let $template = $(template);
+    // let template = await $.get('/attendance/confirm_attendance/name_card.html');
+    let $template = $(name_card);
 
     $template.find('.card-title').html( attendee[0].forename + " " + attendee[0].surname )
 
     if ( attendee[0].reception_invite ) {
-        let reception_template = await $.get('/attendance/confirm_attendance/reception.html');
-        let $reception_template = $(reception_template);
+        // let reception_template = await $.get('/attendance/confirm_attendance/reception.html');
+        // let reception_template = reception;
+        let $reception_template = $(reception);
 
         $reception_template.find('.form-check-input').each( function() {
             $(this).attr('name', 'reception_' + attendee[0].id);
@@ -188,8 +187,9 @@ async function getNameCard(id) {
     }
 
     if ( attendee[0].evening_invite ) {
-        let evening_template = await $.get('/attendance/confirm_attendance/evening.html');
-        let $evening_template = $(evening_template);
+        // let evening_template = await $.get('/attendance/confirm_attendance/evening.html');
+        // let evening_template = evening;
+        let $evening_template = $(evening);
         
         $evening_template.find('.form-check-input').each( function() {
             $(this).attr('name', 'evening_' + attendee[0].id);
@@ -209,8 +209,9 @@ async function getNameCard(id) {
     }
 
     if ( attendee[0].reception_invite || attendee[0].evening_invite ) {
-        let dietary_template = await $.get('/attendance/confirm_attendance/dietary.html');
-        let $dietary_template = $(dietary_template);
+        // let dietary_template = await $.get(/attendance/confirm_attendance/dietary.html');
+        // let dietary_template = dietary;
+        let $dietary_template = $(dietary);
 
         $dietary_template.find('.form-check-input').each( function() {
             let name = $(this).attr('id');
@@ -234,8 +235,8 @@ async function getNameCard(id) {
 
         $template.find('.container').append($dietary_template);
 
-        let contact_template = await $.get('/attendance/confirm_attendance/contact.html');
-        let $contact_template = $(contact_template);
+        // let contact_template = await $.get('/attendance/confirm_attendance/contact.html');
+        let $contact_template = $(contact);
 
         $contact_template.find('.form-control').each( function() {
             let name = $(this).attr('id');
@@ -249,11 +250,6 @@ async function getNameCard(id) {
         $template.find('.container').append($contact_template);
         
     }
-
-
-
-    // todo : add id to for
-    // todo : fix email autofill
 
     return $template
 }
