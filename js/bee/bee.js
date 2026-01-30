@@ -2,7 +2,7 @@ $(document).ready(() => {
 
     let mouseX = 0, mouseY = 0;
     let imgX = 0, imgY = 0;
-    const speed = 0.005;
+    const speed = 0.004;
 
     // trailEnabled is only true if localStorage allows it AND window is wider than 578
     let trailEnabled = localStorage.getItem('cursorTrailEnabled') === 'true' && $(window).width() > 578;
@@ -10,7 +10,7 @@ $(document).ready(() => {
 
     let wobbleOffset = Math.random() * Math.PI * 2;
     const wobbleSpeed = 0.15;
-    const wobbleAmount = 1;
+    const wobbleAmount = 0.9;
     let prevX = imgX;
 
     // track mouse
