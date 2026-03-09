@@ -90,7 +90,7 @@ $(async () => {
                 "nut": responses.nut ?? 0,
                 "dairy": responses.dairy ?? 0,
                 "gluten": responses.gluten ?? 0,
-                "email": responses.contact ?? "",
+                "email": responses.email ?? "",
                 "message": message
             };
 
